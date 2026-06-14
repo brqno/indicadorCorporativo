@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Exportável</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; text-align: center; padding: 40px; margin: 0; }
+        h1 { color: #333; margin-bottom: 10px; }
+        .subtitulo { color: #666; margin-bottom: 40px; }
+        
+        .dashboard { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        
+        /* Estilo do link para não parecer link comum */
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        
+        .card {
+            background: white; 
+            padding: 25px; 
+            border-radius: 15px; 
+            width: 220px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 6px solid #0078d4;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Efeito ao passar o mouse */
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15); 
+        }
+
+        .titulo { color: #666; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .valor { font-size: 36px; font-weight: bold; color: #222; margin: 15px 0; }
+        .download-label { font-size: 11px; color: #0078d4; font-weight: bold; border: 1px solid #0078d4; padding: 5px; border-radius: 5px; display: inline-block; }
+        
+        /* Cores diferentes por categoria para facilitar a leitura */
+        .clientes { border-top-color: #0078d4; }
+        .pedidos { border-top-color: #28a745; }
+        .produtos { border-top-color: #ffc107; }
+
+        .pedidos .download-label { color: #28a745; border-color: #28a745; }
+        .produtos .download-label { color: #d39e00; border-color: #d39e00; }
+    </style>
+</head>
+<body>
+
+    <h1>Painel Administrativo</h1>
+    <p class="subtitulo">Clique em um indicador para baixar o relatório completo em Excel</p>
+
+    <div class="dashboard">
+        <a href="/download/clientes" class="card-link">
+            <div class="card clientes">
+                <div class="titulo">Clientes</div>
+                <div class="valor">{{ valor_clientes }}</div>
+                <div class="download-label">📥 BAIXAR EXCEL</div>
+            </div>
+        </a>
+
+        <a href="/download/pedidos" class="card-link">
+            <div class="card pedidos">
+                <div class="titulo">Pedidos</div>
+                <div class="valor">{{ valor_pedidos }}</div>
+                <div class="download-label">📥 BAIXAR EXCEL</div>
+            </div>
+        </a>
+
+        <a href="/download/produtos" class="card-link">
+            <div class="card produtos">
+                <div class="titulo">Produtos</div>
+                <div class="valor">{{ valor_produtos }}</div>
+                <div class="download-label">📥 BAIXAR EXCEL</div>
+            </div>
+        </a>
+    </div>
+
+    <p style="margin-top: 50px; font-size: 12px; color: #aaa;">Os dados são consultados em tempo real no servidor MSSQL</p>
+
+</body>
+</html>

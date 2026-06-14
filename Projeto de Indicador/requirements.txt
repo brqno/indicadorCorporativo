@@ -1,0 +1,5 @@
+Flask
+pyodbc
+pandas
+openpyxl
+dotenv
